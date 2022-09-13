@@ -2,7 +2,7 @@ import { createTheme } from '@mui/material/styles';
 
 const theme = createTheme({
     palette: {
-        searchBar: {
+        app: {
             main: '#FFE600',
             dark: '#333333',
             lightDark: '#999999',

@@ -4,7 +4,7 @@ import React from "react";
 declare module '@mui/material/styles' {
 
     interface Palette {
-        searchBar: {
+        app: {
             main: string,
             dark: string,
             lightDark: string,
@@ -13,7 +13,7 @@ declare module '@mui/material/styles' {
     }
 
     interface PaletteOptions {
-        searchBar: {
+        app: {
             main: React.CSSProperties['color'],
             dark: React.CSSProperties['color'],
             lightDark: React.CSSProperties['color'],

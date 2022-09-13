@@ -8,10 +8,14 @@ import SearchBar from './SearchBar';
 const Home = () => {
 
     const [search, setSearch] = useState<string>('');
+
+    const onSearch = () => {
+        console.log('Apretando')
+    }
     
     return (
         <Box >
-            <SearchBar />
+            <SearchBar search={search} setSearch={setSearch} onSearch={onSearch}/>
         </Box>
     )
 }
