@@ -6,7 +6,8 @@ const theme = createTheme({
             main: '#FFE600',
             dark: '#333333',
             lightDark: '#999999',
-            extraLightDark: '#EEEEEEEE'
+            extraLightDark: '#EEEEEEEE',
+            button: '#3483FA'
         },
         primary: {
             main: '#FFF'

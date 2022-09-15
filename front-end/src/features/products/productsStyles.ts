@@ -1,4 +1,4 @@
-import { styled, Box, Typography } from '@mui/material';
+import { styled, Box, Typography, Button } from '@mui/material';
 
 export const ContainerLoading = styled(Box)({
     display: 'flex',
@@ -16,7 +16,10 @@ export const ImageProduct = styled('img')({
     height: 180,
     width: 180,
     borderRadius: 4,
-    margin: 16
+    margin: 16,
+    ':hover': {
+        cursor: 'pointer'
+    }
 })
 
 export const DataRow = styled(Box)({
@@ -35,16 +38,25 @@ export const ContainerShipping = styled(Box)({
 
 export const TextPrice = styled(Typography)({
     fontSize: 24,
-    lineHeight: 'normal'
+    lineHeight: 'normal',
+    ':hover': {
+        cursor: 'pointer'
+    }
 }) as typeof Typography
 
 export const TextDecimals = styled(Typography)({
-    fontSize: 18
+    fontSize: 18,
+    ':hover': {
+        cursor: 'pointer'
+    }
 }) as typeof Typography
 
 export const TextTitle = styled(Typography)({
     fontSize: 18,
-    marginTop: 32
+    marginTop: 32,
+    ':hover': {
+        cursor: 'pointer'
+    }
 }) as typeof Typography
 
 export const ContinerDivider = styled(Box)({
@@ -59,3 +71,15 @@ export const Divider = styled(Box)(({ theme }) => ({
     marginRight: 16,
     width: '100%'
 })) as typeof Box
+
+export const BuyButton = styled(Button)(({ theme }) => ({
+    width: 275, 
+    backgroundColor: theme.palette.app.button, 
+    height: 48, 
+    textTransform: 'none',
+    color: '#FFF',
+    fontSize: 18,
+    ':hover': {
+        backgroundColor: theme.palette.app.button,
+    }
+})) as typeof Button
