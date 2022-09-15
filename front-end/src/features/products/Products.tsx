@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import React, { useEffect } from 'react';
 import { Paper, Box, CircularProgress, Stack } from '@mui/material';
 import { useSearchParams } from "react-router-dom";
 
