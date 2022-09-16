@@ -8,6 +8,7 @@ import { ContainerLoading, BuyButton, ContainerShipping, ImageShipping } from '.
 import Breadcrumb from '../../../components/Breadcrumb';
 import convertPrice from '../../../utils/convertPrice';
 import images from '../../../constants/images/index';
+import { ImageProduct, ConditionText, TitleText, PriceText, DecimalsText, PriceRow } from './productDetailStyles';
 
 const ProductDetail = () => {
 
@@ -34,21 +35,21 @@ const ProductDetail = () => {
                     <Breadcrumb breadCrumbs={['Mjicho', 'tito', 'gordo', 'cabezon']} />
                     <Paper elevation={0} sx={{ marginBottom: 2 }}>
                         <Stack direction={'row'} justifyContent={'space-around'}>
-                            <Box width={680} height={680} display={'flex'} justifyContent={'center'} marginTop={'32px'} paddingBottom={10}>
+                            <ImageProduct>
                                 <img src={product?.picture} alt={product?.title} />
-                            </Box>
+                            </ImageProduct>
                             <Stack width={243}>
-                                <Typography sx={{ marginTop: '32px', textAlign: 'left' }} fontSize={14}>{product?.condition} - {product?.sold_quantity} vendidos</Typography>
-                                <Typography sx={{ marginTop: '16px', textAlign: 'left' }} fontSize={24}>{product?.title}</Typography>
-                                <Stack direction={'row'} sx={{ marginTop: '32px', marginBottom: '32px' }} alignItems={'center'}>
-                                    <Typography fontSize={46}>{convertPrice(product?.price.currency || '').format(product?.price.amount || 0)}</Typography>
-                                    <Typography fontSize={32} sx={{ marginTop: '-10px' }}>{product?.price.decimals.toString().padStart(2, '0')}</Typography>
+                                <ConditionText >{product?.condition} - {product?.sold_quantity} vendidos</ConditionText>
+                                <TitleText >{product?.title}</TitleText>
+                                <PriceRow>
+                                    <PriceText>{convertPrice(product?.price.currency || '').format(product?.price.amount || 0)}</PriceText>
+                                    <DecimalsText>{product?.price.decimals.toString().padStart(2, '0')}</DecimalsText>
                                     {product?.free_shipping &&
-                                        <ContainerShipping>
+                                        <ContainerShipping marginTop={'-12px'}>
                                             <ImageShipping alt={`shipping - ${product?.title}`} src={images.shippig} />
                                         </ContainerShipping>
                                     }
-                                </Stack>
+                                </PriceRow>
                                 <BuyButton variant="contained">Comprar</BuyButton>
                             </Stack>
                         </Stack>
