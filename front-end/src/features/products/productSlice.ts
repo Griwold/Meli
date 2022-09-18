@@ -19,12 +19,11 @@ export const fetchProducts = createAsyncThunk<
 >('products/fetchProducts', async ({ product }) => {
 
 	const url = `${api.url}items?q=${product.toLowerCase()}`;
-	const response = await axios(url);
+	const response = await axios.get(url, {
+		headers: sign
+	});
 
-	if (response.data.author.name === sign.name && response.data.author.lastname === sign.lastname) {
-		return response.data
-	}
-	throw new Error("The signatures do not match");	
+	return response.data
 
 })
 
@@ -34,13 +33,11 @@ export const fetchProductDetail = createAsyncThunk<
 >('products/fetchProductDetail', async ({ identifier }) => {
 
 	const url = `${api.url}items/${identifier}`;
-	const response = await axios(url);
+	const response = await axios.get(url, {
+		headers: sign
+	});
 
-	if (response.data.author.name === sign.name && response.data.author.lastname === sign.lastname) {
-		return response.data
-	}
-
-	throw new Error("The signatures do not match");	
+	return response.data
 
 })
 
