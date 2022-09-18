@@ -4,7 +4,7 @@ export const ContainerLoading = styled(Box)({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    height: '100vh'
+    height: '80vh'
 }) as typeof Box
 
 export const ContainerProducts = styled(Box)({
@@ -73,7 +73,8 @@ export const Divider = styled(Box)(({ theme }) => ({
 })) as typeof Box
 
 export const BuyButton = styled(Button)(({ theme }) => ({
-    width: 275, 
+    maxWidth: 275,
+    minWidth: 243, 
     backgroundColor: theme.palette.app.button, 
     height: 48, 
     textTransform: 'none',

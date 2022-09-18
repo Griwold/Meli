@@ -12,16 +12,18 @@ import { Container } from './appStyles';
 const App = () => {
     return (
         <BrowserRouter>
-            <SearchBar />
-            <Container>
-                <Box width={'80%'}>
-                    <Routes>
-                        <Route path="/" element={<Home />} />
-                        <Route path="/items" element={<Products />} />
-                        <Route path="/items/:id" element={<ProductDetail />} />
-                    </Routes>
-                </Box>
-            </Container>
+            <Box minWidth={'fit-content'}>
+                <SearchBar />
+                <Container>
+                    <Box width={'80%'}>
+                        <Routes>
+                            <Route path="/" element={<Home />} />
+                            <Route path="/items" element={<Products />} />
+                            <Route path="/items/:id" element={<ProductDetail />} />
+                        </Routes>
+                    </Box>
+                </Container>
+            </Box>
         </BrowserRouter>
     )
 }

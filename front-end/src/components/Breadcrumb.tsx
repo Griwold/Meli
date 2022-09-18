@@ -12,11 +12,15 @@ const Breadcrumb: FC<BreadCrumbType> = ({ breadCrumbs }) => (
         separator={<NavigateNextIcon fontSize="small" style={{ color: '#999999' }} />}
         aria-label="breadcrumb"
     >
-        {breadCrumbs.map((item: string) => (
-            <Typography fontSize={14} color="app.lightDark">
-                {item}
-            </Typography>
-        ))}
+        {breadCrumbs.map((item: string) => {
+            if (item) {
+                return (
+                    <Typography fontSize={14} color="app.lightDark">
+                        {item}
+                    </Typography>
+                )
+            }
+        })}
     </Breadcrumbs>
 )
 

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Paper, Box, CircularProgress, Stack } from '@mui/material';
+import { Paper, Box, CircularProgress, Stack, Typography } from '@mui/material';
 import { useSearchParams, useNavigate } from "react-router-dom";
 
 import { useAppSelector, useAppDispatch } from '../../app/hooks';
@@ -20,6 +20,7 @@ import {
     Divider,
     ContinerDivider
 } from './productsStyles';
+import convertBreadcrumb from '../../utils/convertBreadcrumb';
 
 const Products = () => {
 
@@ -48,6 +49,11 @@ const Products = () => {
 
     return (
         <Box>
+            {status === 'failed' &&
+                <ContainerLoading >
+                    <Typography>Ups.. Algo ha salido mal, intente nuevamente.</Typography>
+                </ContainerLoading>
+            }
             {status === 'loading' &&
                 <ContainerLoading >
                     <CircularProgress size={40} color={'secondary'} />
@@ -55,8 +61,8 @@ const Products = () => {
             }
             {status === 'success' &&
                 <Box>
-                    <Breadcrumb breadCrumbs={[Object.keys(sortable).pop() || '', params.get('search') || '']} />
-                    <Paper elevation={0}>
+                    <Breadcrumb breadCrumbs={convertBreadcrumb(Object.keys(sortable).pop() || '')} />
+                    <Paper elevation={0} sx={{ marginBottom: 2 }}>
                         {products.map((product, index) => (
                             <ContainerProducts>
                                 <Box display={'flex'} >

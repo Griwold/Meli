@@ -10,8 +10,10 @@ const productService = () => {
     
         const categories = await Promise.all(
             response.data.results.slice(0, 4).map(async (category) => {
-                const categoryName = await axios(`https://api.mercadolibre.com/categories/${category.category_id}`)
-                return categoryName.data.name
+                const { data: { path_from_root } } = await axios(`https://api.mercadolibre.com/categories/${category.category_id}`)
+                let name = ''
+                for (const category of path_from_root) name += `${category.name}/`;
+                return name;
             })
         )
     

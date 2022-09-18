@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { Paper, Box, CircularProgress, Stack, Typography } from '@mui/material';
 
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
+import convertBreadcrumb from '../../../utils/convertBreadcrumb';
 import { fetchProductDetail } from '../productSlice';
 import { ContainerLoading, BuyButton, ContainerShipping, ImageShipping } from '../productsStyles';
 import Breadcrumb from '../../../components/Breadcrumb';
@@ -16,7 +17,6 @@ const ProductDetail = () => {
     const dispatch = useAppDispatch();
     const product = useAppSelector(state => state.products.product_detail);
     const status_detail = useAppSelector(state => state.products.status_detail);
-    console.log(product, 'product');
 
     useEffect(() => {
         dispatch(fetchProductDetail({ identifier: params.id || '' }));
@@ -25,6 +25,11 @@ const ProductDetail = () => {
 
     return (
         <Box>
+            {status_detail === 'failed' &&
+                <ContainerLoading >
+                    <Typography>Ups.. Algo ha salido mal, intente nuevamente.</Typography>
+                </ContainerLoading>
+            }
             {status_detail === 'loading' &&
                 <ContainerLoading >
                     <CircularProgress size={40} color={'secondary'} />
@@ -32,7 +37,7 @@ const ProductDetail = () => {
             }
             {status_detail === 'success' &&
                 <Box>
-                    <Breadcrumb breadCrumbs={['Mjicho', 'tito', 'gordo', 'cabezon']} />
+                    <Breadcrumb breadCrumbs={convertBreadcrumb(product?.category || '')} />
                     <Paper elevation={0} sx={{ marginBottom: 2 }}>
                         <Stack direction={'row'} justifyContent={'space-around'}>
                             <ImageProduct>

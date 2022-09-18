@@ -17,6 +17,7 @@ export interface Item {
     price: Price;
     sold_quantity: number;
     title: string;
+    category: string;
 }
 
 export interface Price {
