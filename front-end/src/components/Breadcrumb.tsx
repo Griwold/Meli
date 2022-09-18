@@ -15,7 +15,7 @@ const Breadcrumb: FC<BreadCrumbType> = ({ breadCrumbs }) => (
         {breadCrumbs.map((item: string) => {
             if (item) {
                 return (
-                    <Typography fontSize={14} color="app.lightDark">
+                    <Typography key={item} fontSize={14} color="app.lightDark">
                         {item}
                     </Typography>
                 )

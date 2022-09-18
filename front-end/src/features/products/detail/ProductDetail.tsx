@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useParams } from 'react-router-dom';
 import { Paper, Box, CircularProgress, Stack, Typography } from '@mui/material';
 
-import { useAppDispatch, useAppSelector } from '../../../app/hooks';
+import { useAppDispatch, useAppSelector, useDidMountEffect } from '../../../app/hooks';
 import convertBreadcrumb from '../../../utils/convertBreadcrumb';
 import { fetchProductDetail } from '../productSlice';
 import { ContainerLoading, BuyButton, ContainerShipping, ImageShipping } from '../productsStyles';
@@ -18,7 +18,7 @@ const ProductDetail = () => {
     const product = useAppSelector(state => state.products.product_detail);
     const status_detail = useAppSelector(state => state.products.status_detail);
 
-    useEffect(() => {
+    useDidMountEffect(() => {
         dispatch(fetchProductDetail({ identifier: params.id || '' }));
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);

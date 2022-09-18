@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Paper, Box, CircularProgress, Stack, Typography } from '@mui/material';
 import { useSearchParams, useNavigate } from "react-router-dom";
 
-import { useAppSelector, useAppDispatch } from '../../app/hooks';
+import { useAppSelector, useAppDispatch, useDidMountEffect } from '../../app/hooks';
 import { fetchProducts } from './productSlice';
 import images from '../../constants/images/index';
 import Breadcrumb from '../../components/Breadcrumb';
@@ -30,11 +30,11 @@ const Products = () => {
     const products = Object.values(useAppSelector(state => state.products.entities));
     const categories = useAppSelector(state => state.products.categories);
     const status = useAppSelector(state => state.products.status);
-
-    useEffect(() => {
+    
+    useDidMountEffect(() => {
         dispatch(fetchProducts({ product: params.get('search') || '' }));
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [params])
+    }, [])
 
     const onClickToDetail = (identifier: string) => navigate(`/items/${identifier}`);
 
@@ -64,7 +64,7 @@ const Products = () => {
                     <Breadcrumb breadCrumbs={convertBreadcrumb(Object.keys(sortable).pop() || '')} />
                     <Paper elevation={0} sx={{ marginBottom: 2 }}>
                         {products.map((product, index) => (
-                            <ContainerProducts>
+                            <ContainerProducts key={product?.id}>
                                 <Box display={'flex'} >
                                     <ImageProduct onClick={() => onClickToDetail(product?.id || '')} src={product?.picture} alt={product?.title} />
                                     <Stack>
