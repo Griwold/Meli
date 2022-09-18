@@ -8,7 +8,8 @@ declare module '@mui/material/styles' {
             main: string,
             dark: string,
             lightDark: string,
-            extraLightDark: string
+            extraLightDark: string,
+            button: string
         }
     }
 
@@ -17,7 +18,8 @@ declare module '@mui/material/styles' {
             main: React.CSSProperties['color'],
             dark: React.CSSProperties['color'],
             lightDark: React.CSSProperties['color'],
-            extraLightDark: React.CSSProperties['color']
+            extraLightDark: React.CSSProperties['color'],
+            button: React.CSSProperties['color']
         }
     }
 }
