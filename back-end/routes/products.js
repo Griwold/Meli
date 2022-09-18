@@ -11,7 +11,7 @@ router.route('/')
             const data = await productService().get(req.query.q);
             res.status(200).json(data)
         } catch (error) {
-            res.send().json(error);
+            res.status(500).json(error);
         }
     })
 
@@ -21,9 +21,7 @@ router.route('/:identifier')
             const data = await productDetailService().get(req.params.identifier);
             res.status(200).json(data);
         } catch (error) {
-            console.log(error, "error");
-            res.send().json(error);
-            res.end()
+            res.status(500).json(error);
         }
     })
 
