@@ -7,6 +7,7 @@ export const useAppDispatch = () => useDispatch<AppDispatch>();
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
 
 
+// hook necesario para hacer pedidos a la api antes que renderize el componente
 export const useDidMountEffect = (func: any, deps: any) => {
     const didMount = useRef(false);
 

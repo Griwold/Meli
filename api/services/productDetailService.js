@@ -7,6 +7,7 @@ const productDetailService = () => {
 
     const get = async (search, author) => {
         
+        // Validación de firma
         validateSign(author)
         
         const { data } = await axios(`https://api.mercadolibre.com/items/${search}`);
@@ -14,6 +15,7 @@ const productDetailService = () => {
         const { data: { path_from_root } } = await axios(`https://api.mercadolibre.com/categories/${data.category_id}`)
 
         let name = ''
+        //Formato de categoria "categoria/sub categoria/.../"
         for (const category of path_from_root) name += `${category.name}/`;
         
         const formatData = {

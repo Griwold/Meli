@@ -7,14 +7,17 @@ const productService = () => {
 
     const get = async (search, req, author) => {
 
+        // Validación de firma
         validateSign(author)
 
         const response = await axios(`https://api.mercadolibre.com/sites/MLA/search?q=${search}`);
     
+        // Fetch para obtener categorias por producto
         const categories = await Promise.all(
             response.data.results.slice(0, 4).map(async (category) => {
                 const { data: { path_from_root } } = await axios(`https://api.mercadolibre.com/categories/${category.category_id}`)
                 let name = ''
+                //Formato de categoria "categoria/sub categoria/.../"
                 for (const category of path_from_root) name += `${category.name}/`;
                 return name;
             })

@@ -31,6 +31,7 @@ const Products = () => {
     const categories = useAppSelector(state => state.products.categories);
     const status = useAppSelector(state => state.products.status);
     
+    // Esto nos sirve por si refrescamos la pagina y por si queremos actualizar por otra busqueda
     useDidMountEffect(() => {
         dispatch(fetchProducts({ product: params.get('search') || '' }));
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -38,6 +39,7 @@ const Products = () => {
 
     const onClickToDetail = (identifier: string) => navigate(`/items/${identifier}`);
 
+    //Cuenta cuantas veces se repite una categoria
     const repetedCategories: { [key: string]: number } = categories.reduce((acc: { [key: string]: number }, next: string) => {
         return {
             ...acc,
@@ -45,8 +47,10 @@ const Products = () => {
         }
     }, {})
 
-    const sortable = Object.entries(repetedCategories).sort(([, a], [, b]) => a - b).reduce((r, [k, v]) => ({ ...r, [k]: v }), {});
 
+    //Ordena de menor a mayor las categorias 
+    const sortable = Object.entries(repetedCategories).sort(([, a], [, b]) => a - b).reduce((r, [k, v]) => ({ ...r, [k]: v }), {});
+    
     return (
         <Box>
             {status === 'failed' &&

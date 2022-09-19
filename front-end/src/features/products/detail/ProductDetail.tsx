@@ -18,6 +18,7 @@ const ProductDetail = () => {
     const product = useAppSelector(state => state.products.product_detail);
     const status_detail = useAppSelector(state => state.products.status_detail);
 
+    //Al refrescar la página podemos recuperar el producto
     useDidMountEffect(() => {
         dispatch(fetchProductDetail({ identifier: params.id || '' }));
         // eslint-disable-next-line react-hooks/exhaustive-deps

@@ -53,10 +53,11 @@ const SearchBar = () => {
     const [params] = useSearchParams();
     const [search, setSearch] = useState<string>('');
 
+    // En el caso de refrescar la página, aqui toma el valor de la url buscado y lo inserta en el input de search
     useEffect(() => {
         if (params.get('search')) setSearch(params.get('search') || '') 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+    }, [params])
 
     const onSearch = () => {
         if (search) {

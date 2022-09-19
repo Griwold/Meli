@@ -7,7 +7,7 @@ const Home = () => {
 
     return (
         <Box >
-            {/* <SearchBar search={search} setSearch={setSearch} onSearch={onSearch} /> */}
+            {/* Aca podríamos crear una vista con un surtido de productos para ofrecer en primera vista */}
         </Box>
     )
 }
