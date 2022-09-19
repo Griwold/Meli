@@ -1,10 +1,13 @@
 import axios from 'axios';
 
 import extractNumber from '../utils/extractNumber.js';
+import validateSign from '../utils/validateSign.js';
 
 const productService = () => {
 
-    const get = async (search) => {
+    const get = async (search, req, author) => {
+
+        validateSign(author)
 
         const response = await axios(`https://api.mercadolibre.com/sites/MLA/search?q=${search}`);
     
@@ -18,10 +21,7 @@ const productService = () => {
         )
     
         const formatData = {
-            author: {
-                name: "Francisco",
-                lastname: "Griguol"
-            },
+            author,
             categories
         }
     

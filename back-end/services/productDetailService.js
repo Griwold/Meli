@@ -1,11 +1,14 @@
 import axios from 'axios';
 
 import extractNumber from '../utils/extractNumber.js';
+import validateSign from '../utils/validateSign.js';
 
 const productDetailService = () => {
 
-    const get = async (search) => {
-
+    const get = async (search, author) => {
+        
+        validateSign(author)
+        
         const { data } = await axios(`https://api.mercadolibre.com/items/${search}`);
         const { data: { plain_text } } = await axios(`https://api.mercadolibre.com/items/${search}/description`);
         const { data: { path_from_root } } = await axios(`https://api.mercadolibre.com/categories/${data.category_id}`)
@@ -14,10 +17,7 @@ const productDetailService = () => {
         for (const category of path_from_root) name += `${category.name}/`;
         
         const formatData = {
-            author: {
-                name: "Francisco",
-                lastname: "Griguol"
-            },
+            author,
             item: {
                 id: data.id,
                 title: data.title,
