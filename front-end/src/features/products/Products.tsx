@@ -34,7 +34,7 @@ const Products = () => {
     useDidMountEffect(() => {
         dispatch(fetchProducts({ product: params.get('search') || '' }));
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+    }, [params])
 
     const onClickToDetail = (identifier: string) => navigate(`/items/${identifier}`);
 
